@@ -1,0 +1,10 @@
+MATMUL n=1024 fp32 (best of reps)
+  naive ijk                 3.118 s     0.69 GFLOP/s  speedup   1.00x  max|diff vs naive| 0.00e+00
+  tiled 64 (scalar C)       0.632 s     3.40 GFLOP/s  speedup   4.94x  max|diff vs naive| 0.00e+00
+  tiled 64 + AVX2 FMA       0.114 s    18.79 GFLOP/s  speedup  27.29x  max|diff vs naive| 4.77e-06
+REDUCTION sum of 67108864 fp32 (268 MB)
+  scalar            0.0845 s    3.18 GB/s  speedup  1.00x  rel.err vs double 4.79e-01
+  8 accumulators    0.0557 s    4.82 GB/s  speedup  1.52x  rel.err vs double 2.12e-02
+  AVX2 4x8          0.0238 s   11.26 GB/s  speedup  3.54x  rel.err vs double 1.16e-04
+numpy/OpenBLAS sgemm n=1024 threads=1: 0.0186 s  115.51 GFLOP/s
+numpy/OpenBLAS sgemm n=1024 threads=default: 0.0093 s  231.34 GFLOP/s
